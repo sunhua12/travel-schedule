@@ -61,7 +61,7 @@ function openModal(modalId) {
 }
 ```
 
-## 5. 升級為通用型：NOTE.md -> HTML 的 SOP
+## 5. 升級為通用型：NOTE.md -> HTML 的 SOP（彈跳視窗 Modal 設定重點）
 
 1. 確認目標頁面與來源筆記
    - 目標檔案：任一行程頁面（例：`your-itinerary.html`、`index.html`）
@@ -79,13 +79,19 @@ function openModal(modalId) {
    - 在目標 `modal` `.modal-body` 內嵌入 HTML
    - 注意韌體：防呆加入 `.warning-box` 以強調注意事項
    - 若需要地圖/導航鏈接，採標準按鈕：`<a class="btn btn-outline" href="..." target="_blank">地圖</a>`
-5. 檢查互動邏輯一致性
+5. 設定彈跳視窗 Modal 樣式與行為
+   - **CSS 設定**：新增 `.modal`（全螢幕遮罩）、`.modal-content`（內容盒）、`.modal-header`（標題與關閉按鈕）、`.modal-body`（內容區）、`.warning-box`（警告提示）
+   - **JS 設定**：實作 `openModal(id)`（顯示 modal 並禁止 body 捲動）、`closeModal(id)`（隱藏 modal 並恢復捲動）、`handleModalBackdrop(event)`（點擊遮罩關閉）、ESC 鍵監聽關閉
+   - **互動邏輯**：確保 modal 支援滾動（`overflow-y: auto`）、z-index 高於其他元素（`z-index: 999`）、響應式設計（`max-width: 820px`）
+6. 檢查互動邏輯一致性
    - 確認每個 `openModal('x')` 對應到 `<div id="x">`
    - 所有 `closeModal('x')` 與 backdrop 點擊關閉能正常運作
-6. 測試與驗證
+   - 篩選邏輯（`activeDays`）同步影響 timeline 與 card 顯示
+7. 測試與驗證
    - 在瀏覽器開啟目標 html，逐一點按每個「詳細筆記」按鈕，確認內容呈現、捲動正常
    - 檢查 console 無錯誤、無重複 id、無缺失 modal
-7. 紀錄與版本控管
+   - 驗證 modal 關閉後頁面狀態恢復（捲動解鎖）
+8. 紀錄與版本控管
    - `git diff` / `git status` 確認更改
    - `git commit -m "docs: add NOTE.md to itinerary modal - generic procedure"`
    - 建議小步驟 commit 方便 rollback 和 review

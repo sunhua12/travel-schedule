@@ -1,415 +1,782 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Netherlands 2026 - Itinerary</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --bg-color: #ffffff;
-            --section-bg: #f9fafb;
-            --text-main: #111827;
-            --text-muted: #6b7280;
-            --accent: #2563eb;
-            --king: #f97316;
-            --border: #e5e7eb;
-        }
+      :root {
+        --bg-color: #ffffff;
+        --section-bg: #f9fafb;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+        --accent: #2563eb;
+        --king: #f97316;
+        --border: #e5e7eb;
+      }
 
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.7;
-            margin: 0;
-            padding: 0;
-            -webkit-font-smoothing: antialiased;
-        }
+      body {
+        font-family: "Noto Sans TC", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.7;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+      }
 
-        header {
-            padding: 2.5rem 1rem 1.5rem;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+      header {
+        padding: 2.5rem 1rem 1.5rem;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
 
-        header h1 {
-            font-weight: 700;
-            font-size: 2.2rem;
-            margin-bottom: 0.2rem;
-        }
+      header h1 {
+        font-weight: 700;
+        font-size: 2.2rem;
+        margin-bottom: 0.2rem;
+      }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 1.5rem 3rem;
-        }
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 1.5rem 3rem;
+      }
 
-        .section-header {
-            margin: 2.5rem 0 1.2rem;
-            padding-bottom: 0.6rem;
-            border-bottom: 1px solid var(--border);
-        }
+      .section-header {
+        margin: 2.5rem 0 1.2rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 1px solid var(--border);
+      }
 
-        /* 橫向行程概要樣式 */
-        .itinerary-summary-wrapper {
-            background: var(--section-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
-            margin: 2rem 0;
-            overflow-x: auto;
-        }
+      /* 橫向行程概要樣式 */
+      .itinerary-summary-wrapper {
+        background: var(--section-bg);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem 1.5rem;
+        margin: 2rem 0;
+        overflow-x: auto;
+      }
 
-        .itinerary-summary {
-            display: flex;
-            justify-content: space-between;
-            min-width: 1000px;
-            position: relative;
-            padding: 0 1rem;
-        }
+      .itinerary-summary {
+        display: flex;
+        justify-content: space-between;
+        min-width: 1000px;
+        position: relative;
+        padding: 0 1rem;
+      }
 
-        .itinerary-summary::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 50px;
-            right: 50px;
-            height: 2px;
-            background: var(--border);
-            z-index: 0;
-        }
+      .itinerary-summary::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 50px;
+        right: 50px;
+        height: 2px;
+        background: var(--border);
+        z-index: 0;
+      }
 
-        .summary-item {
-            position: relative;
-            z-index: 1;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+      .summary-item {
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
 
-        .summary-dot {
-            width: 16px;
-            height: 16px;
-            background: #fff;
-            border: 3px solid var(--border);
-            border-radius: 50%;
-            margin-bottom: 12px;
-            transition: all 0.2s;
-        }
+      .summary-dot {
+        width: 16px;
+        height: 16px;
+        background: #fff;
+        border: 3px solid var(--border);
+        border-radius: 50%;
+        margin-bottom: 12px;
+        transition: all 0.2s;
+      }
 
-        .summary-item.active .summary-dot {
-            border-color: var(--accent);
-            background: var(--accent);
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
-        }
+      .summary-item.active .summary-dot {
+        border-color: var(--accent);
+        background: var(--accent);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+      }
 
-        .summary-info { text-align: center; line-height: 1.4; }
-        .summary-info strong { font-size: 0.85rem; color: var(--text-main); display: block; margin-bottom: 2px; }
-        .summary-info span { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
+      .summary-info {
+        text-align: center;
+        line-height: 1.4;
+      }
+      .summary-info strong {
+        font-size: 0.85rem;
+        color: var(--text-main);
+        display: block;
+        margin-bottom: 2px;
+      }
+      .summary-info span {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
 
-        /* 行程時間軸區塊 */
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.2rem;
-            margin: 1.5rem 0;
-        }
+      /* 行程時間軸區塊 */
+      .timeline-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.2rem;
+        margin: 1.5rem 0;
+      }
 
-        .day-block {
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-        }
+      .day-block {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+      }
 
-        .day-title {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--section-bg);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+      .day-title {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--section-bg);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
 
-        .event-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem; }
-        .event-item { position: relative; padding-left: 0.8rem; border-left: 2px solid var(--border); }
-        .event-time { font-size: 0.75rem; color: var(--accent); font-weight: 600; margin-bottom: 0.1rem; }
-        .event-content strong { display: block; font-size: 0.85rem; color: var(--text-main); }
-        .event-content p { margin: 0; font-size: 0.8rem; color: #6b7280; line-height: 1.4; }
+      .event-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .event-item {
+        position: relative;
+        padding-left: 0.8rem;
+        border-left: 2px solid var(--border);
+      }
+      .event-time {
+        font-size: 0.75rem;
+        color: var(--accent);
+        font-weight: 600;
+        margin-bottom: 0.1rem;
+      }
+      .event-content strong {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--text-main);
+      }
+      .event-content p {
+        margin: 0;
+        font-size: 0.8rem;
+        color: #6b7280;
+        line-height: 1.4;
+      }
 
-        .flight-tag { font-size: 0.7rem; background: #eff6ff; color: var(--accent); padding: 0.1rem 0.4rem; border-radius: 4px; font-weight: 700; margin-right: 0.4rem; }
+      .flight-tag {
+        font-size: 0.7rem;
+        background: #eff6ff;
+        color: var(--accent);
+        padding: 0.1rem 0.4rem;
+        border-radius: 4px;
+        font-weight: 700;
+        margin-right: 0.4rem;
+      }
 
-        /* 景點小卡 */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.2rem;
-        }
+      /* 景點小卡 */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.2rem;
+      }
 
-        .card {
-            background: #fff;
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.2s ease;
-        }
+      .card {
+        background: #fff;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.2s ease;
+      }
 
-        .card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+      .card:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      }
 
-        .tag { font-size: 0.7rem; padding: 0.2rem 0.5rem; background: var(--section-bg); border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); margin-right: 0.4rem; margin-bottom: 0.4rem; display: inline-block; }
-        .btn { padding: 0.5rem; font-size: 0.85rem; text-decoration: none; border-radius: 6px; text-align: center; flex: 1; transition: all 0.2s; }
-        .btn-primary { background: var(--text-main); color: #fff; }
-        .btn-outline { border: 1px solid var(--border); color: var(--text-main); }
+      /* modal 樣式 */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
 
-        .footer { text-align: center; padding: 4rem 0; color: var(--text-muted); font-size: 0.85rem; }
-        .king-day { background: var(--king); color: white; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.7rem; }
+      .modal-content {
+        background-color: #fff;
+        margin: 5% auto;
+        padding: 1rem;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        max-width: 820px;
+        width: calc(100% - 2rem);
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.8rem;
+      }
+
+      .modal-header h3 {
+        margin: 0;
+      }
+
+      .modal-close {
+        border: none;
+        background: transparent;
+        font-size: 1.1rem;
+        cursor: pointer;
+      }
+
+      .modal-body {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #374151;
+      }
+
+      .modal-body ul,
+      .modal-body ol {
+        margin: 0.5rem 0 1rem;
+        padding-left: 1rem;
+      }
+      .warning-box {
+        border-left: 4px solid #f59e0b;
+        background: #fffbeb;
+        padding: 0.75rem 1rem;
+        margin: 0.75rem 0;
+        color: #92400e;
+      }
+
+      .tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+        background: var(--section-bg);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        color: var(--text-muted);
+        margin-right: 0.4rem;
+        margin-bottom: 0.4rem;
+        display: inline-block;
+      }
+      .btn {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+        text-decoration: none;
+        border-radius: 6px;
+        text-align: center;
+        flex: 1;
+        transition: all 0.2s;
+      }
+      .btn-primary {
+        background: var(--text-main);
+        color: #fff;
+      }
+      .btn-outline {
+        border: 1px solid var(--border);
+        color: var(--text-main);
+      }
+
+      .footer {
+        text-align: center;
+        padding: 4rem 0;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      .king-day {
+        background: var(--king);
+        color: white;
+        padding: 0.1rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <header>
+      <h1>Netherlands 2026</h1>
+      <p>4 / 25 — 5 / 27 旅遊計畫</p>
+    </header>
 
-<header>
-    <h1>Netherlands 2026</h1>
-    <p>4 / 25 — 5 / 27 旅遊計畫</p>
-</header>
-
-<div class="container">
-    
-    <!-- 橫向行程概要篩選 -->
-    <div class="section-header"><h2>📆行程時間軸</h2></div>
-    <div class="itinerary-summary-wrapper">
+    <div class="container">
+      <!-- 橫向行程概要篩選 -->
+      <div class="section-header"><h2>📆行程時間軸</h2></div>
+      <div class="itinerary-summary-wrapper">
         <div class="itinerary-summary">
-            <div class="summary-item active" onclick="toggleFilter('all', this)">
-                <span class="summary-dot"></span>
-                <div class="summary-info"><strong>全部</strong><span>📍 所有天數</span></div>
+          <div class="summary-item active" onclick="toggleFilter('all', this)">
+            <span class="summary-dot"></span>
+            <div class="summary-info">
+              <strong>全部</strong><span>📍 所有天數</span>
             </div>
-            <div class="summary-item" onclick="toggleFilter('day1', this)">
-                <span class="summary-dot"></span>
-                <div class="summary-info"><strong>4/25</strong><span>啟程 TPE</span></div>
+          </div>
+          <div class="summary-item" onclick="toggleFilter('day1', this)">
+            <span class="summary-dot"></span>
+            <div class="summary-info">
+              <strong>4/25</strong><span>啟程 TPE</span>
             </div>
-            <div class="summary-item" onclick="toggleFilter('day2', this)">
-                <span class="summary-dot"></span>
-                <div class="summary-info"><strong>4/26</strong><span>抵達 AMS</span></div>
+          </div>
+          <div class="summary-item" onclick="toggleFilter('day2', this)">
+            <span class="summary-dot"></span>
+            <div class="summary-info">
+              <strong>4/26</strong><span>抵達 AMS</span>
             </div>
-            <div class="summary-item" onclick="toggleFilter('day3', this)">
-                <span class="summary-dot"></span>
-                <div class="summary-info"><strong>4/27</strong><span>國王節 👑</span></div>
+          </div>
+          <div class="summary-item" onclick="toggleFilter('day3', this)">
+            <span class="summary-dot"></span>
+            <div class="summary-info">
+              <strong>4/27</strong><span>國王節 👑</span>
             </div>
-            <div class="summary-item" onclick="toggleFilter('day4', this)">
-                <span class="summary-dot"></span>
-                <div class="summary-info"><strong>4/28</strong><span>鬱金香 🌷</span></div>
+          </div>
+          <div class="summary-item" onclick="toggleFilter('day4', this)">
+            <span class="summary-dot"></span>
+            <div class="summary-info">
+              <strong>4/28</strong><span>鬱金香 🌷</span>
             </div>
-            <div class="summary-item" onclick="toggleFilter('dayLong', this)">
-                <span class="summary-dot"></span>
-                <div class="summary-info"><strong>4/29-5/24</strong><span>歐洲巡迴</span></div>
+          </div>
+          <div class="summary-item" onclick="toggleFilter('dayLong', this)">
+            <span class="summary-dot"></span>
+            <div class="summary-info">
+              <strong>4/29-5/24</strong><span>歐洲巡迴</span>
             </div>
-            <div class="summary-item" onclick="toggleFilter('dayReturn1', this)">
-                <span class="summary-dot"></span>
-                <div class="summary-info"><strong>5/25</strong><span>離境 AMS</span></div>
+          </div>
+          <div class="summary-item" onclick="toggleFilter('dayReturn1', this)">
+            <span class="summary-dot"></span>
+            <div class="summary-info">
+              <strong>5/25</strong><span>離境 AMS</span>
             </div>
-            <div class="summary-item" onclick="toggleFilter('dayReturn2', this)">
-                <span class="summary-dot"></span>
-                <div class="summary-info"><strong>5/26</strong><span>上海過境</span></div>
+          </div>
+          <div class="summary-item" onclick="toggleFilter('dayReturn2', this)">
+            <span class="summary-dot"></span>
+            <div class="summary-info">
+              <strong>5/26</strong><span>上海過境</span>
             </div>
-            <div class="summary-item" onclick="toggleFilter('dayReturn3', this)">
-                <span class="summary-dot"></span>
-                <div class="summary-info"><strong>5/27</strong><span>返抵 TPE</span></div>
+          </div>
+          <div class="summary-item" onclick="toggleFilter('dayReturn3', this)">
+            <span class="summary-dot"></span>
+            <div class="summary-info">
+              <strong>5/27</strong><span>返抵 TPE</span>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="timeline-grid">
+      <div class="timeline-grid">
         <!-- Day 1 -->
         <div class="day-block" data-day="day1">
-            <div class="day-title">4 / 25 (六) 台北 ✈ 上海</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <div class="event-time">18:40 - 20:40</div>
-                    <div class="event-content">
-                        <strong><span class="flight-tag">MU5006</span> TPE ✈ PVG</strong>
-                        <p>台北出發，晚上抵達上海浦東機場。</p>
-                    </div>
-                </div>
+          <div class="day-title">4 / 25 (六) 台北 ✈ 上海</div>
+          <div class="event-list">
+            <div class="event-item">
+              <div class="event-time">18:40 - 20:40</div>
+              <div class="event-content">
+                <strong
+                  ><span class="flight-tag">MU5006</span> TPE ✈ PVG</strong
+                >
+                <p>台北出發，晚上抵達上海浦東機場。</p>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Day 2 -->
         <div class="day-block" data-day="day2">
-            <div class="day-title">4 / 26 (日) 上海 ✈ 阿姆斯特丹</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <div class="event-time">12:30 - 18:30</div>
-                    <div class="event-content">
-                        <strong><span class="flight-tag">MU771</span> PVG ✈ AMS</strong>
-                        <p>上海出發，傍晚抵達阿姆斯特丹，入住飯店。</p>
-                    </div>
-                </div>
+          <div class="day-title">4 / 26 (日) 上海 ✈ 阿姆斯特丹</div>
+          <div class="event-list">
+            <div class="event-item">
+              <div class="event-time">12:30 - 18:30</div>
+              <div class="event-content">
+                <strong><span class="flight-tag">MU771</span> PVG ✈ AMS</strong>
+                <p>上海出發，傍晚抵達阿姆斯特丹，入住飯店。</p>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Day 3 -->
         <div class="day-block" data-day="day3">
-            <div class="day-title">4 / 27 (一) <span class="king-day">👑 國王節</span></div>
-            <div class="event-list">
-                <div class="event-item">
-                    <div class="event-content">
-                        <strong>國王節慶祝活動</strong>
-                        <p>全城橘色派對！推薦前往 Haarlem 或 Vondelpark 體驗二手市集。</p>
-                    </div>
-                </div>
+          <div class="day-title">
+            4 / 27 (一) <span class="king-day">👑 國王節</span>
+          </div>
+          <div class="event-list">
+            <div class="event-item">
+              <div class="event-content">
+                <strong>國王節慶祝活動</strong>
+                <p>
+                  全城橘色派對！推薦前往 Haarlem 或 Vondelpark 體驗二手市集。
+                </p>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Day 4 -->
         <div class="day-block" data-day="day4">
-            <div class="day-title">4 / 28 (二) 鬱金香與博物館</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <div class="event-time">Morning</div>
-                    <div class="event-content"><strong>庫肯霍夫花園 🌷</strong><p>賞鬱金香、拍風車。</p></div>
-                </div>
-                <div class="event-item">
-                    <div class="event-time">Afternoon</div>
-                    <div class="event-content"><strong>阿姆斯特丹市區</strong><p>參觀梵谷博物館或安妮之家。</p></div>
-                </div>
+          <div class="day-title">4 / 28 (二) 鬱金香與博物館</div>
+          <div class="event-list">
+            <div class="event-item">
+              <div class="event-time">Morning</div>
+              <div class="event-content">
+                <strong>庫肯霍夫花園 🌷</strong>
+                <p>賞鬱金香、拍風車。</p>
+              </div>
             </div>
+            <div class="event-item">
+              <div class="event-time">Afternoon</div>
+              <div class="event-content">
+                <strong>阿姆斯特丹市區</strong>
+                <p>參觀梵谷博物館或安妮之家。</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Long Trip -->
         <div class="day-block" data-day="dayLong">
-            <div class="day-title">4 / 29 - 5 / 24 歐洲巡迴</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <div class="event-content"><strong>義大利 & 東歐之旅</strong><p>4/29 前往義大利，開啟為期 26 天的歐洲跨國之旅。</p></div>
-                </div>
+          <div class="day-title">4 / 29 - 5 / 24 歐洲巡迴</div>
+          <div class="event-list">
+            <div class="event-item">
+              <div class="event-content">
+                <strong>義大利 & 東歐之旅</strong>
+                <p>4/29 前往義大利，開啟為期 26 天的歐洲跨國之旅。</p>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Return Day 1 -->
         <div class="day-block" data-day="dayReturn1">
-            <div class="day-title">5 / 25 (一) 阿姆斯特丹 ✈ 上海</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <div class="event-time">20:15</div>
-                    <div class="event-content">
-                        <strong><span class="flight-tag">MU772</span> AMS ✈ PVG</strong>
-                        <p>從阿姆斯特丹啟程返回上海。</p>
-                    </div>
-                </div>
+          <div class="day-title">5 / 25 (一) 阿姆斯特丹 ✈ 上海</div>
+          <div class="event-list">
+            <div class="event-item">
+              <div class="event-time">20:15</div>
+              <div class="event-content">
+                <strong><span class="flight-tag">MU772</span> AMS ✈ PVG</strong>
+                <p>從阿姆斯特丹啟程返回上海。</p>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Return Day 2 -->
         <div class="day-block" data-day="dayReturn2">
-            <div class="day-title">5 / 26 (二) 上海過境</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <div class="event-time">13:15</div>
-                    <div class="event-content"><strong>抵達上海</strong><p>抵達上海浦東機場，過境休息或上海半日遊。</p></div>
-                </div>
+          <div class="day-title">5 / 26 (二) 上海過境</div>
+          <div class="event-list">
+            <div class="event-item">
+              <div class="event-time">13:15</div>
+              <div class="event-content">
+                <strong>抵達上海</strong>
+                <p>抵達上海浦東機場，過境休息或上海半日遊。</p>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Return Day 3 -->
         <div class="day-block" data-day="dayReturn3">
-            <div class="day-title">5 / 27 (三) 上海 ✈ 台北</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <div class="event-time">12:20 - 14:25</div>
-                    <div class="event-content">
-                        <strong><span class="flight-tag">MU5007</span> PVG ✈ TPE</strong>
-                        <p>上海出發，返抵台北，結束旅程。</p>
-                    </div>
-                </div>
+          <div class="day-title">5 / 27 (三) 上海 ✈ 台北</div>
+          <div class="event-list">
+            <div class="event-item">
+              <div class="event-time">12:20 - 14:25</div>
+              <div class="event-content">
+                <strong
+                  ><span class="flight-tag">MU5007</span> PVG ✈ TPE</strong
+                >
+                <p>上海出發，返抵台北，結束旅程。</p>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="section-header"><h2>🔍 📆行程細項</h2></div>
-    <div class="card-grid">
+      <div class="section-header"><h2>🔍 📆行程細項</h2></div>
+
+      <div class="section-header"><h3>🗺️ 景點攻略</h3></div>
+      <div class="card-grid">
         <div class="card" data-day="day4">
+          <h3>庫肯霍夫鬱金香花園</h3>
+          <div style="margin-bottom: 0.8rem">
+            <span class="tag">🌷 季節限定</span
+            ><span class="tag">賞花必訪</span>
+          </div>
+          <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+            4月鬱金香季，建議搭乘接駁巴士或租車直達。
+          </p>
+          <div style="display: flex; gap: 0.5rem; margin-top: auto">
+            <button
+              class="btn btn-primary"
+              onclick="openModal('keukenhofModal')"
+            >
+              詳細筆記
+            </button>
+          </div>
+        </div>
+
+        <div class="card" data-day="day3">
+          <h3>國王節 (King's Day)</h3>
+          <div style="margin-bottom: 0.8rem">
+            <span class="tag">👑 文化</span><span class="tag">全城橘</span>
+          </div>
+          <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+            4/27 走街串巷、二手市集、市集美食。
+          </p>
+          <div style="display: flex; gap: 0.5rem; margin-top: auto">
+            <button
+              class="btn btn-primary"
+              onclick="openModal('kingsdayModal')"
+            >
+              詳細筆記
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header"><h3>🍱 美食攻略</h3></div>
+      <div class="card-grid">
+        <div class="card" data-day="day3">
+          <h3>阿姆斯特丹街頭小吃</h3>
+          <div style="margin-bottom: 0.8rem">
+            <span class="tag">🧀 為你挑選</span><span class="tag">地道</span>
+          </div>
+          <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+            推薦 Stroopwafel、炸魚薯條、荷蘭生蠔。
+          </p>
+          <div style="display: flex; gap: 0.5rem; margin-top: auto">
+            <button class="btn btn-primary" onclick="openModal('foodModal')">
+              詳細筆記
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header"><h3>🏨 住宿攻略</h3></div>
+      <div class="card-grid">
+        <div class="card" data-day="day2">
+          <h3>阿姆斯特丹中心運河酒店</h3>
+          <div style="margin-bottom: 0.8rem">
+            <span class="tag">🏨 4星</span><span class="tag">行程樞紐</span>
+          </div>
+          <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+            靠近市區，距離梵谷博物館 15 分鐘步行。
+          </p>
+          <div style="display: flex; gap: 0.5rem; margin-top: auto">
+            <button class="btn btn-primary" onclick="openModal('hotelModal')">
+              詳細筆記
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- modals -->
+      <div
+        class="modal"
+        id="keukenhofModal"
+        onclick="handleModalBackdrop(event)"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
             <h3>庫肯霍夫鬱金香花園</h3>
-            <div style="margin-bottom:0.8rem;"><span class="tag">🌷 季節限定</span><span class="tag">€21+</span></div>
-            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">四月盛開期務必提早預約接駁與門票。</p>
-            <div style="display:flex; gap:0.5rem; margin-top:auto;">
-                <a href="https://keukenhof.nl/en/" class="btn btn-primary">官網預訂</a>
+            <button class="modal-close" onclick="closeModal('keukenhofModal')">
+              ✕
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              建議：提前 1-2 個月線上購票。園區門票約 €21 起，旺季人氣極高。
+            </p>
+            <ul>
+              <li>
+                交通：從阿姆斯特丹搭乘 SZ 8580 到 Lisse，再轉乘 854 公車。
+              </li>
+              <li>開放時間：3月至5月 08:00-19:30（依當年度公告）。</li>
+              <li>推薦：早晨入園，人潮較少，拍照更美。</li>
+            </ul>
+            <div class="warning-box">
+              ⚠️ 注意：走路多、風大，請攜帶保暖外套與舒適鞋子。
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="card" data-day="day4">
-            <h3>梵谷博物館</h3>
-            <div style="margin-bottom:0.8rem;"><span class="tag">🎨 必訪</span><span class="tag">€22+</span></div>
-            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">現場不售票，建議提早 3 週預約。</p>
-            <div style="display:flex; gap:0.5rem; margin-top:auto;">
-                <a href="https://www.vangoghmuseum.nl/en" class="btn btn-primary">官網預訂</a>
+      <div
+        class="modal"
+        id="kingsdayModal"
+        onclick="handleModalBackdrop(event)"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>國王節行程</h3>
+            <button class="modal-close" onclick="closeModal('kingsdayModal')">
+              ✕
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>全城橙色派對，建議預留完整一天走市集與街頭表演。</p>
+            <ul>
+              <li>必去：Haarlem、Vondelpark、Prinsengracht 的跳蚤市集。</li>
+              <li>交通：地鐵搭乘 52 線至 RAI，或 50 線及 54 線至 De Pijp。</li>
+              <li>備註：市中心會有路段封閉，請提早訂好回程交通。</li>
+            </ul>
+            <div class="warning-box">
+              ⚠️ 注意：現場酒精與人潮較擁擠，小心保管個人物品。
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="card" data-day="dayLong">
-            <h3>羊角村 Giethoorn</h3>
-            <div style="margin-bottom:0.8rem;"><span class="tag">🛶 水鄉</span><span class="tag">遠程</span></div>
-            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">建議租電動小船自駕，體驗歐洲威尼斯魅力。</p>
-            <div style="display:flex; gap:0.5rem; margin-top:auto;">
-                <a href="https://giethoornboattickets.nl/" class="btn btn-primary">租船預約</a>
+      <div class="modal" id="foodModal" onclick="handleModalBackdrop(event)">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>荷蘭美食必吃</h3>
+            <button class="modal-close" onclick="closeModal('foodModal')">
+              ✕
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li><strong>Stroopwafel</strong>：Dam Square 周邊必吃。</li>
+              <li><strong>炸魚薯條</strong>：Scheveningen 海邊攤販推薦。</li>
+              <li><strong>荷蘭生蠔</strong>：北海風味，搭配白酒。</li>
+            </ul>
+            <div class="warning-box">
+              ⚠️ 提示：國王節當天街市有大量甜點特賣，留意糖分攝取。
             </div>
+          </div>
         </div>
+      </div>
+
+      <div class="modal" id="hotelModal" onclick="handleModalBackdrop(event)">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>阿姆斯特丹運河酒店</h3>
+            <button class="modal-close" onclick="closeModal('hotelModal')">
+              ✕
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li>步行 12 分鐘到梵谷博物館。</li>
+              <li>附近有多家自行車租借與餐廳。</li>
+              <li>建議提前預訂，可選含早餐方案。</li>
+            </ul>
+            <div class="warning-box">
+              ⚠️ 備註：4 月旺季房價高，請至少提早 3-4 週預訂。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">&copy; 2026 Netherlands Trip Planner</div>
     </div>
 
-    <div class="footer">&copy; 2026 Netherlands Trip Planner</div>
-</div>
+    <script>
+      let activeDays = new Set(["all"]);
 
-<script>
-    let activeDays = new Set(['all']);
-
-    function toggleFilter(dayId, element) {
-        if (dayId === 'all') {
-            activeDays = new Set(['all']);
-            document.querySelectorAll('.summary-item').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
+      function toggleFilter(dayId, element) {
+        if (dayId === "all") {
+          activeDays = new Set(["all"]);
+          document
+            .querySelectorAll(".summary-item")
+            .forEach((el) => el.classList.remove("active"));
+          element.classList.add("active");
         } else {
-            const allItem = document.querySelector('.summary-item[onclick*="all"]');
-            
-            if (activeDays.has('all')) {
-                activeDays.clear();
-                allItem.classList.remove('active');
-            }
+          const allItem = document.querySelector(
+            '.summary-item[onclick*="all"]',
+          );
 
-            if (activeDays.has(dayId)) {
-                activeDays.delete(dayId);
-                element.classList.remove('active');
-            } else {
-                activeDays.add(dayId);
-                element.classList.add('active');
-            }
+          if (activeDays.has("all")) {
+            activeDays.clear();
+            allItem.classList.remove("active");
+          }
 
-            if (activeDays.size === 0) {
-                activeDays.add('all');
-                allItem.classList.add('active');
-            }
+          if (activeDays.has(dayId)) {
+            activeDays.delete(dayId);
+            element.classList.remove("active");
+          } else {
+            activeDays.add(dayId);
+            element.classList.add("active");
+          }
+
+          if (activeDays.size === 0) {
+            activeDays.add("all");
+            allItem.classList.add("active");
+          }
         }
         applyFilters();
-    }
+      }
 
-    function applyFilters() {
-        document.querySelectorAll('.day-block').forEach(block => {
-            const day = block.getAttribute('data-day');
-            block.style.display = (activeDays.has('all') || activeDays.has(day)) ? 'flex' : 'none';
+      function applyFilters() {
+        document.querySelectorAll(".day-block").forEach((block) => {
+          const day = block.getAttribute("data-day");
+          block.style.display =
+            activeDays.has("all") || activeDays.has(day) ? "flex" : "none";
         });
-        document.querySelectorAll('.card').forEach(card => {
-            const day = card.getAttribute('data-day');
-            card.style.display = (activeDays.has('all') || activeDays.has(day)) ? 'flex' : 'none';
+        document.querySelectorAll(".card").forEach((card) => {
+          const day = card.getAttribute("data-day");
+          card.style.display =
+            activeDays.has("all") || activeDays.has(day) ? "flex" : "none";
         });
-    }
-</script>
+      }
 
-</body>
+      function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+        modal.style.display = "none";
+        document.body.style.overflow = "";
+      }
+
+      function handleModalBackdrop(event) {
+        if (event.target && event.target.classList.contains("modal")) {
+          closeModal(event.target.id);
+        }
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          document.querySelectorAll(".modal").forEach((modal) => {
+            if (modal.style.display === "block") {
+              closeModal(modal.id);
+            }
+          });
+        }
+      });
+    </script>
+  </body>
 </html>
