@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netherlands 2026 - Itinerary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --section-bg: #f9fafb;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --accent: #2563eb;
+            --king: #f97316; /* 國王節橙色 */
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            padding: 4rem 1rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-weight: 700;
+            font-size: 2.4rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem 5rem;
+        }
+
+        .section-header {
+            margin: 4rem 0 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* 航班樣式 */
+        .flight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .flight-card {
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--section-bg);
+        }
+
+        .flight-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .airport {
+            text-align: center;
+            flex: 1;
+        }
+
+        .airport span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .airport strong {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .flight-arrow {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            color: var(--accent);
+        }
+
+        .flight-arrow::after {
+            content: "✈";
+            font-size: 1rem;
+        }
+
+        .flight-detail {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* 行程時間軸樣式 */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .day-block {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .day-block::before {
+            content: "";
+            position: absolute;
+            left: calc(-2rem - 6px);
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid white;
+        }
+
+        .day-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .king-day {
+            background: var(--king);
+            color: white;
+            padding: 0.1rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .event-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-item {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+        }
+
+        .event-time {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .event-content strong {
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .event-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+
+        /* 卡片網格樣式 (沿用) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .grid { grid-template-columns: 1fr; }
+            .flight-grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover { border-color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+        .btn {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 0.85rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-primary { background-color: var(--text-main); color: white; }
+        .btn-outline { border: 1px solid var(--border); color: var(--text-main); }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            background: var(--section-bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-muted);
+            margin-right: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 5rem 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Netherlands 2026</h1>
+    <p>4 / 25 — 5 / 27 旅遊計畫</p>
+</header>
+
+<div class="container">
+    
+    <!-- Section: 航班 -->
+    <div class="section-header">
+        <h2>✈️ 航班資訊</h2>
+    </div>
+    
+    <div class="flight-grid">
+        <div class="flight-card">
+            <div class="flight-info">
+                <div class="airport"><span>Taipei</span><strong>TPE</strong></div>
+                <div class="flight-arrow"></div>
+                <div class="airport"><span>Shanghai</span><strong>PVG</strong></div>
+            </div>
+            <div class="flight-detail">
+                <span>4/25 MU5006</span>
+                <span>18:40 - 20:40</span>
+            </div>
+        </div>
+
+        <div class="flight-card">
+            <div class="flight-info">
+                <div class="airport"><span>Shanghai</span><strong>PVG</strong></div>
+                <div class="flight-arrow"></div>
+                <div class="airport"><span>Amsterdam</span><strong>AMS</strong></div>
+            </div>
+            <div class="flight-detail">
+                <span>4/26 MU771</span>
+                <span>12:30 - 18:30</span>
+            </div>
+        </div>
+
+        <div class="flight-card">
+            <div class="flight-info">
+                <div class="airport"><span>Amsterdam</span><strong>AMS</strong></div>
+                <div class="flight-arrow"></div>
+                <div class="airport"><span>Shanghai</span><strong>PVG</strong></div>
+            </div>
+            <div class="flight-detail">
+                <span>5/25 MU772</span>
+                <span>20:15 - 13:15(+1)</span>
+            </div>
+        </div>
+
+        <div class="flight-card">
+            <div class="flight-info">
+                <div class="airport"><span>Shanghai</span><strong>PVG</strong></div>
+                <div class="flight-arrow"></div>
+                <div class="airport"><span>Taipei</span><strong>TPE</strong></div>
+            </div>
+            <div class="flight-detail">
+                <span>5/27 MU5007</span>
+                <span>12:20 - 14:25</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: 行程時間軸 -->
+    <div class="section-header">
+        <h2>🗓️ 行程時間軸</h2>
+    </div>
+
+    <div class="timeline">
+        <!-- 4/25-26 -->
+        <div class="day-block">
+            <div class="day-title">4 / 25 - 26 (六 - 日)</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-time">Departure</div>
+                    <div class="event-content">
+                        <strong>台北經上海前往阿姆斯特丹</strong>
+                        <p>週日 18:30 抵達阿姆斯特丹史基浦機場 (AMS)。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4/27 -->
+        <div class="day-block">
+            <div class="day-title">4 / 27 (一) <span class="king-day">👑 國王節 King's Day</span></div>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-content">
+                        <strong>全城慶祝活動</strong>
+                        <p>推薦：Vondelpark (阿姆斯特丹) 或 Haarlem 市中心體驗橘色熱潮。</p>
+                        <p style="margin-top:0.5rem; font-size:0.85rem; color:var(--text-muted)">📝 夜晚行程：紅燈區與學術研討🌿</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4/28 -->
+        <div class="day-block">
+            <div class="day-title">4 / 28 (二) 鬱金香與藝術日</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-time">08:30 - 09:30</div>
+                    <div class="event-content">
+                        <strong>出發前往庫肯霍夫</strong>
+                        <p>搭地鐵 M52 至 Europaplein，轉搭 852 接駁車。</p>
+                    </div>
+                </div>
+                <div class="event-item" style="border-left: 4px solid #10b981;">
+                    <div class="event-time">09:30 - 13:30</div>
+                    <div class="event-content">
+                        <strong>庫肯霍夫花園 (Keukenhof) 🌷</strong>
+                        <p>賞花、拍風車。建議園內簡單用餐或草地野餐。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-time">15:00 - 17:30</div>
+                    <div class="event-content">
+                        <strong>梵谷博物館 或 國家博物館</strong>
+                        <p>博物館區 (Museumplein)。需提前 2-4 週預約。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-time">17:30 - 19:30</div>
+                    <div class="event-content">
+                        <strong>Albert Cuyp Markt</strong>
+                        <p>步行前往市集，體驗現煎荷蘭煎餅 (Stroopwafel)。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4/29 - 5/25 -->
+        <div class="day-block">
+            <div class="day-title">4 / 29 — 5 / 24</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-content">
+                        <strong>歐洲巡迴：義大利 & 東歐</strong>
+                        <p>4/29 出發前往義大利；5/12 出發前往東歐。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5/25-27 -->
+        <div class="day-block">
+            <div class="day-title">5 / 25 - 27 (一 - 三)</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-time">Return</div>
+                    <div class="event-content">
+                        <strong>啟程返航</strong>
+                        <p>5/25 20:15 AMS 出發；5/27 14:25 返抵台北。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: 景點詳情 (保持原有卡片) -->
+    <div class="section-header">
+        <h2>🔍 重點景點指南</h2>
+    </div>
+    
+    <div class="grid">
+        <div class="card">
+            <h3>庫肯霍夫鬱金香花園</h3>
+            <div style="margin-bottom: 1rem;">
+                <span class="tag">3/19 - 5/10</span>
+                <span class="tag">預算 €21+</span>
+            </div>
+            <p style="font-size:0.9rem; color:#4b5563; margin-bottom:1.5rem;">季節限定！四月下旬為盛開期。務必預約接駁車時段。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://keukenhof.nl/en/" class="btn btn-primary">官方預訂</a>
+                <a href="https://maps.app.goo.gl/TLT1N4XpRaFyxWeG9" class="btn btn-outline">交通地圖</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>梵谷博物館</h3>
+            <div style="margin-bottom: 1rem;">
+                <span class="tag">熱門</span>
+                <span class="tag">預算 €22+</span>
+            </div>
+            <p style="font-size:0.9rem; color:#4b5563; margin-bottom:1.5rem;">極度熱門，建議提前 3 週購票。現場不售票。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://www.vangoghmuseum.nl/en" class="btn btn-primary">官方預訂</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Van+Gogh+Museum+Amsterdam" class="btn btn-outline">地圖</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Netherlands Trip Planner. Bon Voyage!
+    </div>
+</div>
+
+</body>
+</html>
