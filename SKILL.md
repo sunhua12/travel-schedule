@@ -1,56 +1,91 @@
 ---
 name: travel-itinerary-designer
-description: 提供現代化、互動式旅遊行程網頁的設計概念與實作指導。強調「獨立日期拆分」、「景點/餐廳全量補完」與「Set型態篩選邏輯」。
+description: 提供現代化、互動式旅遊行程網頁的設計指導。強調「分組歸類攻略」、「全量彈窗筆記（Modal）」與「絕對零刪減內容整合原則」。
 ---
 
 # 旅遊行程設計指南 (Travel Itinerary Designer)
 
-本技能提供製作高品質、互動性強的旅遊行程計畫網頁之設計規範與實作邏輯。
+本技能提供製作高品質、高資訊密度且具備深度互動性的旅遊行程計畫網頁之設計規範。
 
 ## 1. 核心視覺風格 (Visual Style)
 
-- **設計語言**：極簡主義 (Minimalism)，大量運用留白、細邊框 (`#e5e7eb`) 與層級清晰的字體排版。
+- **設計語言**：極簡主義 (Minimalism)，使用細邊框 (`#e5e7eb`)、大量留白與淡灰背景 (`#f9fafb`)。
 - **關鍵色彩**：
-  - **Accent**：`#2563eb` (標準藍)，用於進度點、選取態與主要按鈕。
-  - **Highlight**：`#f97316` (亮橘)，標註特殊活動（如國王節、立山雪牆）。
-- **字體**：優先使用 `Noto Sans TC`，設定合理的行高 (`1.7`) 確保閱讀舒適度。
+  - **Accent**：`#2563eb` (專業藍)，用於進度點、選取態與主要動作按鈕。
+  - **Highlight**：`#fef3c7` 背景配 `#92400e` 文字，專用於「詳細筆記」按鈕。
+- **字體**：優先使用 `Noto Sans TC`，設定行高 `1.7` 以確保長篇筆記的閱讀舒適度。
 
-## 2. 排版架構概念 (Layout Principles)
+## 2. 排版與內容架構 (Information Architecture)
 
-### 獨立日期單元 (Granular Data Units)
-- **原則**：行程必須按日拆分，避免日期段合併（如 4/25-26 應拆為兩張卡片）。
-- **意義**：提供更精確的篩選顆粒度，方便使用者查看特定日期的航班或行程細節。
+### 獨立日期單元 (Granular Date Units)
 
-### 全量景點指南 (Comprehensive Detail Supplement)
-- **原則**：在「行程時間軸」中出現的**所有景點、餐廳、飯店**，都必須在下方的「景點/美食指南」區塊中有對應的小卡片。
-- **內容要求**：每張卡片應包含：標題、分類標籤 (Tags)、簡短描述、以及行動呼籲按鈕 (如：地點連結、預訂官網)。
+- **原則**：行程必須按日拆分單獨展示（如 4/25, 4/26 分開），提供最精確的篩選顆粒度。
 
-### 響應式佈局 (Responsive Layout)
-- **時間軸**：橫向滾動容器 (`overflow-x: auto`) 配合純圓點連線設計。
-- **網格系統**：使用 `repeat(auto-fill, minmax(300px, 1fr))` 確保卡片在各尺寸螢幕下整齊排列。
+### 攻略分組歸類 (Semantic Grouping)
+
+- **原則**：下方的詳細攻略區塊必須依序拆分為：
+  1. **🗺️ 景點攻略** (Sightseeing)
+  2. **🍱 美食攻略** (Food)
+  3. **🏨 住宿攻略** (Accommodation)
+
+### 彈跳視窗筆記架構 (Full-Note Modal System)
+
+- **核心目的**：針對筆記內容極多的情況，使用彈跳視窗 (Modal) 呈現以保持頁面整潔。
+- **絕對零刪減原則 (Unabridged Mandate)**：
+  - **規範**：整合外部筆記時，**嚴禁任何形式的摘要、簡化或內容篩選**。
+  - **要求**：必須包含所有交通細節（含出口編號）、歷史背景故事、所有推薦菜名與價格、每一項注意事項、以及括號內的私人備註。
+  - **格式**：筆記中的 Markdown 結構（標題、清單、粗體、警告符號）必須精確轉化為 HTML 標籤。
 
 ## 3. 互動與篩選邏輯 (Interactivity)
 
-- **狀態管理**：使用原生 JavaScript `Set` 物件 (`activeDays`) 管理多重選取狀態。
-- **航班整合**：不設立獨立航班區塊，而是將航班資訊（航班號、機場、時段）使用 `.flight-tag` 直接嵌入對應日期的時間軸卡片中。
-- **雙向同步**：篩選器必須同時控制時間軸區塊 (`.day-block`) 與下方指南卡片 (`.card`)。
+- **Set 型態篩選**：使用 JavaScript `Set` 管理 `activeDays`，實現單選日期篩選。
+- **全域同步**：點選日期圓點時，必須同時篩選「時間軸」與「三大攻略區塊」中的所有相關卡片。
+- **Modal 管理**：實作支援傳入 `modalId` 的通用 `openModal(id)` 函數，並支援點選遮罩區域自動關閉與禁止底層捲動。
 
 ## 4. 實作規範 (Implementation)
 
-### 篩選邏輯片段
+### 絕對零刪減之轉化範例
+
+- **原始筆記**：`* **空中腳踏車：** 每次只要 100 日圓，性價比極高。`
+- **正確實作**：應保留「100 日圓」與「性價比極高」等所有修飾語與數據。
+
+### Modal 控制邏輯
+
 ```javascript
-function toggleFilter(dayId, element) {
-    if (dayId === 'all') {
-        activeDays = new Set(['all']);
-        // 清除其餘 active 樣式
-    } else {
-        if (activeDays.has('all')) activeDays.clear();
-        activeDays.has(dayId) ? activeDays.delete(dayId) : activeDays.add(dayId);
-        if (activeDays.size === 0) activeDays.add('all'); // 保底邏輯
-    }
-    applyFilters();
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden"; // 禁止底層捲動，維持閱讀專注
+  }
 }
 ```
 
-### HTML 結構標記
-- 所有的 `.day-block` 與 `.card` 必須帶有正確的 `data-day="dayX"` 屬性以供 JavaScript 識別。
+## 5. 升級為通用型：NOTE.md -> HTML 的 SOP
+
+1. 確認目標頁面與來源筆記
+   - 目標檔案：任一行程頁面（例：`your-itinerary.html`、`index.html`）
+   - 來源檔案：`NOTE.md`（或其他 Markdown/文字筆記）
+2. 匹配景點/餐廳名稱與 modal id
+   - 每個詳細筆記應有一個唯一 `modal` (e.g. `id="xxxxModal"`)
+   - 卡片行為集中在按鈕：`onclick="openModal('xxxxModal')"`
+   - Timeline 篩選要求單選：「全部」 vs 單一日期（Radio 風格）
+3. Markdown → HTML 轉換規則
+   - `#`、`##`、`###` 等標題轉為 `<h1>`、`<h2>`、`<h3>`
+   - 無序列表 `-` / `*` 轉 `<ul><li>`；有序列表 `1.` `2.` 轉 `<ol><li>`
+   - 字體格式：`**bold**` → `<strong>`、`*italic*` → `<em>`
+   - 把所有原文內容完整維持（不做剪裁、概括、或拆句）
+4. 嵌入現有風格與模態格式
+   - 在目標 `modal` `.modal-body` 內嵌入 HTML
+   - 注意韌體：防呆加入 `.warning-box` 以強調注意事項
+   - 若需要地圖/導航鏈接，採標準按鈕：`<a class="btn btn-outline" href="..." target="_blank">地圖</a>`
+5. 檢查互動邏輯一致性
+   - 確認每個 `openModal('x')` 對應到 `<div id="x">`
+   - 所有 `closeModal('x')` 與 backdrop 點擊關閉能正常運作
+6. 測試與驗證
+   - 在瀏覽器開啟目標 html，逐一點按每個「詳細筆記」按鈕，確認內容呈現、捲動正常
+   - 檢查 console 無錯誤、無重複 id、無缺失 modal
+7. 紀錄與版本控管
+   - `git diff` / `git status` 確認更改
+   - `git commit -m "docs: add NOTE.md to itinerary modal - generic procedure"`
+   - 建議小步驟 commit 方便 rollback 和 review
