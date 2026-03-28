@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nagoya 2026 - Itinerary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --section-bg: #f9fafb;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --accent: #2563eb;
+            --highlight: #f97316;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            padding: 2.5rem 1rem 1.5rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+        }
+
+        .section-header {
+            margin: 2.5rem 0 1.2rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* 橫向行程概要樣式 */
+        .itinerary-summary-wrapper {
+            background: var(--section-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .itinerary-summary {
+            display: flex;
+            justify-content: space-between;
+            min-width: 800px;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .itinerary-summary::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background: var(--border);
+            z-index: 0;
+        }
+
+        .summary-item {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .summary-dot {
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border: 3px solid var(--border);
+            border-radius: 50%;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+
+        .summary-item.active .summary-dot {
+            border-color: var(--accent);
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+        }
+
+        .summary-info { text-align: center; line-height: 1.4; }
+        .summary-info strong { font-size: 0.85rem; color: var(--text-main); display: block; margin-bottom: 2px; }
+        .summary-info span { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
+
+        /* 行程時間軸區塊 */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .day-block {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .day-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--section-bg);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .event-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem; }
+        .event-item { position: relative; padding-left: 0.8rem; border-left: 2px solid var(--border); }
+        .event-time { font-size: 0.75rem; color: var(--accent); font-weight: 600; margin-bottom: 0.1rem; }
+        .event-content strong { display: block; font-size: 0.85rem; color: var(--text-main); }
+        .event-content p { margin: 0; font-size: 0.8rem; color: #6b7280; line-height: 1.4; }
+
+        .flight-tag { font-size: 0.7rem; background: #eff6ff; color: var(--accent); padding: 0.1rem 0.4rem; border-radius: 4px; font-weight: 700; margin-right: 0.4rem; }
+
+        /* 景點小卡 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .card {
+            background: #fff;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+
+        .tag { font-size: 0.7rem; padding: 0.2rem 0.5rem; background: var(--section-bg); border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); margin-right: 0.4rem; margin-bottom: 0.4rem; display: inline-block; }
+        .btn { padding: 0.5rem; font-size: 0.85rem; text-decoration: none; border-radius: 6px; text-align: center; flex: 1; transition: all 0.2s; }
+        .btn-primary { background: var(--text-main); color: #fff; }
+        .btn-outline { border: 1px solid var(--border); color: var(--text-main); }
+
+        .footer { text-align: center; padding: 4rem 0; color: var(--text-muted); font-size: 0.85rem; }
+        .special-day { background: var(--highlight); color: white; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Nagoya 2026</h1>
+    <p>4 / 16 — 4 / 20 名古屋・立山黑部之旅</p>
+</header>
+
+<div class="container">
+    
+    <!-- 橫向行程概要篩選 -->
+    <div class="section-header"><h2>📆行程時間軸</h2></div>
+    <div class="itinerary-summary-wrapper">
+        <div class="itinerary-summary">
+            <div class="summary-item active" onclick="toggleFilter('all', this)">
+                <span class="summary-dot"></span>
+                <div class="summary-info"><strong>全部</strong><span>📍 所有天數</span></div>
+            </div>
+            <div class="summary-item" onclick="toggleFilter('day1', this)">
+                <span class="summary-dot"></span>
+                <div class="summary-info"><strong>4/16</strong><span>啟程與名城</span></div>
+            </div>
+            <div class="summary-item" onclick="toggleFilter('day2', this)">
+                <span class="summary-dot"></span>
+                <div class="summary-info"><strong>4/17</strong><span>吉卜力樂園</span></div>
+            </div>
+            <div class="summary-item" onclick="toggleFilter('day3', this)">
+                <span class="summary-dot"></span>
+                <div class="summary-info"><strong>4/18</strong><span>上高地</span></div>
+            </div>
+            <div class="summary-item" onclick="toggleFilter('day4', this)">
+                <span class="summary-dot"></span>
+                <div class="summary-info"><strong>4/19</strong><span>立山黑部雪牆</span></div>
+            </div>
+            <div class="summary-item" onclick="toggleFilter('day5', this)">
+                <span class="summary-dot"></span>
+                <div class="summary-info"><strong>4/20</strong><span>名城與歸賦</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline-grid">
+        <!-- Day 1 -->
+        <div class="day-block" data-day="day1">
+            <div class="day-title">4 / 16 (四) 名古屋抵達</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-time">02:10 - 06:00</div>
+                    <div class="event-content">
+                        <strong><span class="flight-tag">MM722</span> TPE ✈ NGO</strong>
+                        <p>抵達名古屋機場，開啟旅程。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-time">Morning</div>
+                    <div class="event-content">
+                        <strong>New Poppy (喫茶ニューポピー)</strong>
+                        <p>丸之內站步行 8 分鐘，享受日式早茶。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-time">16:00</div>
+                    <div class="event-content">
+                        <strong>Hotel Check-in</strong>
+                        <p>大和ROYNET飯店 名古屋太閣通口。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-time">Evening</div>
+                    <div class="event-content">
+                        <strong>大須觀音 Osu Kannon</strong>
+                        <p>參拜與周邊商店街漫遊。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="day-block" data-day="day2">
+            <div class="day-title">4 / 17 (五) <span class="special-day">吉卜力樂園</span></div>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-time">09:30 - 17:00</div>
+                    <div class="event-content">
+                        <strong>吉卜力主題公園</strong>
+                        <p>大倉庫、魔女之谷、龍貓森林。需穿著舒適運動鞋。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-time">Evening</div>
+                    <div class="event-content">
+                        <strong>晚餐美食</strong>
+                        <p>熱田蓬萊軒（鰻魚飯）或 飛騨牛一頭家。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="day-block" data-day="day3">
+            <div class="day-title">4 / 18 (六) 上高地巡禮</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-time">07:30</div>
+                    <div class="event-content">
+                        <strong>集合出發</strong>
+                        <p>Bic Camera 名古屋站西店集合。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-time">Afternoon</div>
+                    <div class="event-content">
+                        <strong>春季限定上高地</strong>
+                        <p>guided tour，約 2.5 小時體驗。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-time">Night</div>
+                    <div class="event-content">
+                        <strong>入住白馬</strong>
+                        <p>HAKUBA SUN Valley Hotel。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="day-block" data-day="day4">
+            <div class="day-title">4 / 19 (日) <span class="special-day">立山黑部雪牆</span></div>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-time">Full Day</div>
+                    <div class="event-content">
+                        <strong>阿爾卑斯路線全線穿越</strong>
+                        <p>扇澤 ➡ 黑部水壩 ➡ 室堂雪牆 ➡ 立山。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-time">22:30</div>
+                    <div class="event-content">
+                        <strong>返回名古屋</strong>
+                        <p>回到出發地點解散。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="day-block" data-day="day5">
+            <div class="day-title">4 / 20 (一) 市區巡禮與賦歸</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-time">Morning</div>
+                    <div class="event-content">
+                        <strong>名古屋城 & 熱田神宮</strong>
+                        <p>地標巡禮與參拜。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-time">Afternoon</div>
+                    <div class="event-content">
+                        <strong>戶田川綠地公園</strong>
+                        <p>悠閒散步，享受最後的日本時光。</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-time">22:45 - 00:05</div>
+                    <div class="event-content">
+                        <strong>NGO ✈ TPE</strong>
+                        <p>返抵台北，行程圓滿結束。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header"><h2>🔍 行程細項</h2></div>
+    <div class="card-grid">
+        <!-- Day 1 -->
+        <div class="card" data-day="day1">
+            <h3>New Poppy (喫茶ニューポピー)</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">☕ 自家烘焙</span><span class="tag">丸之內站</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">復古氛圍的名古屋咖啡廳，推薦點一份經典吐司配咖啡，享受悠閒早晨。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/sPhn39GQkUKKMdzB7" class="btn btn-outline">地點連結</a>
+            </div>
+        </div>
+
+        <div class="card" data-day="day1">
+            <h3>Chiikawa Land Nagoya</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">🛍️ 名古屋 PARCO</span><span class="tag">新品限購</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">超熱門吉伊卡哇專賣店。新品限購一件，建議提早前往排隊。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/1wrqs6SqZ5yirmum9" class="btn btn-outline">地點連結</a>
+            </div>
+        </div>
+
+        <div class="card" data-day="day1">
+            <h3>大須觀音 Osu Kannon</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">🏮 寺院參拜</span><span class="tag">商店街</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">著名的觀音靈場，周邊大須商店街匯集美食與各式雜貨，好逛好買。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/UjqFqa9hgntQ8UfA7" class="btn btn-outline">地點連結</a>
+            </div>
+        </div>
+
+        <div class="card" data-day="day1">
+            <h3>大和ROYNET飯店 名古屋太閣通口</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">🏨 住宿</span><span class="tag">名古屋站旁</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">交通位置優越，環境舒適，是此行名古屋的下榻首選。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/j4DDYAQQ4i923E3Q9" class="btn btn-outline">地點連結</a>
+            </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="card" data-day="day2">
+            <h3>吉卜力樂園 Ghibli Park</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">🎟️ 預約制</span><span class="tag">魔女之谷</span><span class="tag">大倉庫</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">五大園區重點亮點：大倉庫與魔女之谷必去。需提早 2-3 個月預約門票。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/kCnvKGFXagySMZBR8" class="btn btn-primary">地點連結</a>
+            </div>
+        </div>
+
+        <div class="card" data-day="day2">
+            <h3>熱田蓬萊軒 (鰻魚飯)</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">🍱 鰻魚三吃</span><span class="tag">名古屋名物</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">百年老店「ひつまぶし」鰻魚三吃，享受炭火焦香與多層次口感體驗。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/wneMypKwnEWy7KTy5" class="btn btn-outline">地點連結</a>
+            </div>
+        </div>
+
+        <div class="card" data-day="day2">
+            <h3>飛騨牛一頭家</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">🥩 高級燒肉</span><span class="tag">飛騨牛</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">一次買入整頭飛騨牛的名店，肉質鮮甜，入口即化，預約建議。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/NFibxpw26u85G2vf9" class="btn btn-outline">地點連結</a>
+            </div>
+        </div>
+
+        <!-- Day 3 & 4 -->
+        <div class="card" data-day="day3">
+            <h3>上高地 (Kamikochi)</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">🏔️ 神降臨之地</span><span class="tag">春季限定</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">梓川、河童橋、穗高連峰。春季剛開山，湖水倒映雪山的美景絕讚。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <span class="btn btn-outline" style="cursor:default;">導覽行程</span>
+            </div>
+        </div>
+
+        <div class="card" data-day="day4">
+            <h3>立山黑部阿爾卑斯路線</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">❄️ 雪牆漫步</span><span class="tag">墨鏡必備</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">穿越北陸屋脊，六種交通工具體驗。室堂雪牆高達 10 多米極為震撼。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/XZLoBmPoZoauGXLN6" class="btn btn-primary">地點連結</a>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="card" data-day="day5">
+            <h3>名古屋城 (Nagoya Castle)</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">🏯 金鯱</span><span class="tag">本丸御殿</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">德川家康所建，屋頂金鯱是名古屋象徵。本丸御殿障壁畫輝煌華麗。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/yxAVwLjyFucwoYXB9" class="btn btn-outline">地點連結</a>
+            </div>
+        </div>
+
+        <div class="card" data-day="day5">
+            <h3>熱田神宮 (Atsuta Jingu)</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">⛩️ 三神器</span><span class="tag">歷史悠久</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">存放草薙劍的神聖之所，佔地廣大且古木參天，氣氛肅穆神聖。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/uARuu6SA4U3LKzm2A" class="btn btn-outline">地點連結</a>
+            </div>
+        </div>
+
+        <div class="card" data-day="day5">
+            <h3>鳥開総本家</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">🐣 金賞親子丼</span><span class="tag">地雞料理</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">使用名古屋交趾雞，榮獲多次丼飯與手羽先金賞，美味保證。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/hZqgiQRKSXXCtXTC6" class="btn btn-outline">地點連結</a>
+            </div>
+        </div>
+
+        <div class="card" data-day="day5">
+            <h3>戶田川綠地公園</h3>
+            <div style="margin-bottom:0.8rem;"><span class="tag">🌳 悠閒散步</span><span class="tag">在地人推</span></div>
+            <p style="font-size:0.85rem; color:#4b5563; margin-bottom:1.5rem;">廣大的草皮與設施，是遠離觀光人潮享受最後片刻寧靜的好地方。</p>
+            <div style="display:flex; gap:0.5rem; margin-top:auto;">
+                <a href="https://maps.app.goo.gl/HwLmMC4KjRFwFaLK8" class="btn btn-outline">地點連結</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">&copy; 2026 Nagoya Trip Planner</div>
+</div>
+
+<script>
+    let activeDays = new Set(['all']);
+
+    function toggleFilter(dayId, element) {
+        if (dayId === 'all') {
+            activeDays = new Set(['all']);
+            document.querySelectorAll('.summary-item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+        } else {
+            const allItem = document.querySelector('.summary-item[onclick*="all"]');
+            
+            if (activeDays.has('all')) {
+                activeDays.clear();
+                allItem.classList.remove('active');
+            }
+
+            if (activeDays.has(dayId)) {
+                activeDays.delete(dayId);
+                element.classList.remove('active');
+            } else {
+                activeDays.add(dayId);
+                element.classList.add('active');
+            }
+
+            if (activeDays.size === 0) {
+                activeDays.add('all');
+                allItem.classList.add('active');
+            }
+        }
+        applyFilters();
+    }
+
+    function applyFilters() {
+        document.querySelectorAll('.day-block').forEach(block => {
+            const day = block.getAttribute('data-day');
+            block.style.display = (activeDays.has('all') || activeDays.has(day)) ? 'flex' : 'none';
+        });
+        document.querySelectorAll('.card').forEach(card => {
+            const day = card.getAttribute('data-day');
+            card.style.display = (activeDays.has('all') || activeDays.has(day)) ? 'flex' : 'none';
+        });
+    }
+</script>
+
+</body>
+</html>
