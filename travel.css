@@ -168,16 +168,49 @@ body {
   text-transform: uppercase;
 }
 
-/* Destinations Cards (Reference-like) */
+/* Section Headers (Modern Travel Style) */
 .section-header {
-  margin: 4rem 0 2rem;
-  text-align: center;
+  margin: 5rem 0 2.5rem;
+  text-align: left;
+  position: relative;
+}
+
+.section-badge {
+  display: inline-block;
+  background: rgba(48, 175, 91, 0.1);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 0.75rem;
 }
 
 .section-header h2 {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
   letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-header h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, #e2e8f0 0%, transparent 100%);
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  font-weight: 400;
 }
 
 .card-grid {
