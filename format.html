@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 手機優先：確保在行動裝置上正確縮放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nagoya 2026 行程表</title>
+    <style>
+      /* 極簡風格與色彩變數 */
+      :root {
+        --primary-bg: #f9f9f9;
+        --card-bg: #ffffff;
+        --text-main: #1a1a1a;
+        --text-muted: #666666;
+        --accent-color: #0056b3;
+        --border-color: #e0e0e0;
+      }
+
+      /* 基礎排版與留白設定 */
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--primary-bg);
+        color: var(--text-main);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* 頂部導航設計 */
+      header {
+        background-color: var(--card-bg);
+        padding: 40px 20px 20px;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      header p {
+        margin: 5px 0 0;
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+
+      /* 內容容器 */
+      main {
+        max-width: 600px; /* 適合手機與平板閱讀的寬度 */
+        margin: 20px auto;
+        padding: 0 15px;
+      }
+
+      /* 手風琴摺疊卡片設計 */
+      .day-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        margin-bottom: 16px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .day-header {
+        padding: 16px 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        font-size: 18px;
+        background-color: var(--card-bg);
+        transition: background-color 0.2s ease;
+      }
+
+      .day-header:active {
+        background-color: #f0f0f0;
+      }
+
+      .day-date {
+        color: var(--accent-color);
+        font-size: 14px;
+        margin-right: 12px;
+        font-weight: 700;
+      }
+
+      .day-title {
+        flex-grow: 1;
+      }
+
+      .toggle-icon {
+        font-size: 20px;
+        color: var(--text-muted);
+        transition: transform 0.3s ease;
+      }
+
+      .day-content {
+        display: none; /* 預設隱藏，點擊後透過 JS 展開 */
+        padding: 0 20px 20px;
+        border-top: 1px solid var(--border-color);
+        font-size: 15px;
+      }
+
+      /* 行程細節排版 */
+      .schedule-item {
+        margin-top: 16px;
+      }
+
+      .time {
+        font-weight: 600;
+        color: var(--text-main);
+        display: block;
+        margin-bottom: 4px;
+        font-size: 14px;
+      }
+
+      .activity {
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      .highlight {
+        font-weight: 600;
+        color: var(--text-main);
+      }
+
+      /* 標籤設計 */
+      .badge {
+        display: inline-block;
+        background-color: #f0f4f8;
+        color: var(--accent-color);
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Nagoya 2026</h1>
+      <p>4/16 — 4/20 名古屋・立山黑部之旅</p>
+    </header>
+
+    <main>
+      <!-- Day 1 -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleCard(this)">
+          <span class="day-date">4/16 (四)</span>
+          <span class="day-title">名古屋抵達與大須</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="day-content">
+          <div class="schedule-item">
+            <span class="time">02:10 - 06:00 | 航班抵達</span>
+            <p class="activity">
+              <span class="highlight">MM722 TPE ✈ NGO</span
+              ><br />抵達名古屋機場，開啟旅程。
+            </p>
+          </div>
+          <div class="schedule-item">
+            <span class="time">Morning | 老街散策</span>
+            <p class="activity">
+              <span class="highlight">New Poppy & 四間道</span
+              ><br />老建築改建咖啡廳、歷史街區散策。
+            </p>
+          </div>
+          <div class="schedule-item">
+            <span class="time">Evening | 大須地區漫遊</span>
+            <p class="activity">
+              <span class="highlight">大須觀音與商店街</span
+              ><br />大須觀音參拜、商店街小吃、萬松寺白龍演出。
+            </p>
+            <span class="badge">🍽️ 推薦：大須炸雞、Solo Pizza</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleCard(this)">
+          <span class="day-date">4/17 (五)</span>
+          <span class="day-title">吉卜力樂園</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="day-content">
+          <div class="schedule-item">
+            <span class="time">09:30 - 17:00 | 吉卜力主題公園</span>
+            <p class="activity">
+              <span class="highlight">Standard 券 (15:00 大倉庫入場)</span
+              ><br />重點：魔女之谷、龍貓森林、魔法之里。15:00
+              準時進入大倉庫排隊。
+            </p>
+          </div>
+          <div class="schedule-item">
+            <span class="time">Evening | 名古屋必吃</span>
+            <p class="activity">
+              <span class="highlight">熱田蓬萊軒</span
+              ><br />百年老店鰻魚飯三吃。採現場登記預約制，建議先登記後逛神宮。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleCard(this)">
+          <span class="day-date">4/18 (六)</span>
+          <span class="day-title">上高地秘境</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="day-content">
+          <div class="schedule-item">
+            <span class="time">07:30 | 集合出發</span>
+            <p class="activity">
+              <span class="highlight">Bic Camera 名古屋站西店</span
+              ><br />前往春季剛開山的上高地。務必穿著防水登山鞋與防風外套。
+            </p>
+          </div>
+          <div class="schedule-item">
+            <span class="time">Daytime | 健行路線</span>
+            <p class="activity">大正池 ➡ 河童橋。欣賞穗高連峰與殘雪美景。</p>
+            <span class="badge">🏨 住宿：白馬太陽谷飯店</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleCard(this)">
+          <span class="day-date">4/19 (日)</span>
+          <span class="day-title">立山黑部雪牆</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="day-content">
+          <div class="schedule-item">
+            <span class="time">Full Day | 雪之大谷</span>
+            <p class="activity">
+              <span class="highlight">扇澤進出</span
+              ><br />穿越黑部水壩，漫步室堂最高 2,450m 雪牆。尋找雷鳥蹤跡！
+            </p>
+            <span class="badge">⚠️ 必備：墨鏡、行動電源、洋蔥式穿法</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleCard(this)">
+          <span class="day-date">4/20 (一)</span>
+          <span class="day-title">市區巡禮與賦歸</span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="day-content">
+          <div class="schedule-item">
+            <span class="time">Morning | 歷史名城</span>
+            <p class="activity">
+              <span class="highlight">名古屋城 & 熱田神宮</span
+              ><br />欣賞本丸御殿金箔壁畫與金鯱；參拜三大神器之一的草薙劍。
+            </p>
+          </div>
+          <div class="schedule-item">
+            <span class="time">22:45 | 賦歸</span>
+            <p class="activity">
+              <span class="highlight">NGO ✈ TPE</span
+              ><br />搭機返抵台北，旅途平安。
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // 簡單的 JavaScript 控制手風琴摺疊選單
+      function toggleCard(element) {
+        const content = element.nextElementSibling;
+        const icon = element.querySelector(".toggle-icon");
+
+        // 切換顯示狀態
+        if (content.style.display === "block") {
+          content.style.display = "none";
+          icon.textContent = "+";
+          icon.style.transform = "rotate(0deg)";
+        } else {
+          content.style.display = "block";
+          icon.textContent = "−";
+          icon.style.transform = "rotate(180deg)";
+        }
+      }
+    </script>
+  </body>
+</html>
