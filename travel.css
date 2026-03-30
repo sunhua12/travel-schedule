@@ -311,6 +311,19 @@ body {
   color: var(--text-main);
 }
 
+.btn-close-modal {
+  background: #f1f5f9;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.btn-close-modal:hover {
+  background: #e2e8f0;
+  color: var(--text-main);
+}
+
 /* Modal and Others */
 .modal {
   display: none;
