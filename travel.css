@@ -1,4 +1,3 @@
-
 :root {
   --bg-color: #f8fafc;
   --section-bg: #ffffff;
@@ -9,7 +8,8 @@
   --accent: #ff814c; /* Orange accent */
   --highlight: #fec601; /* Yellow accent */
   --border: #e2e8f0;
-  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 body {
@@ -27,7 +27,9 @@ body {
   position: relative;
   height: 60vh;
   min-height: 400px;
-  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1570530495393-270836569269?auto=format&fit=crop&q=80&w=1600');
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1570530495393-270836569269?auto=format&fit=crop&q=80&w=1600");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -116,7 +118,9 @@ body {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.summary-dot { display: none; } /* Simplified for modern look */
+.summary-dot {
+  display: none;
+} /* Simplified for modern look */
 
 .summary-info strong {
   font-size: 1rem;
@@ -336,8 +340,14 @@ body {
 }
 
 @keyframes modalFadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .close-modal {
@@ -380,8 +390,12 @@ body {
   border-radius: 0 8px 8px 0;
 }
 
-.modal-body ul { padding-left: 1.5rem; }
-.modal-body li { margin-bottom: 0.75rem; }
+.modal-body ul {
+  padding-left: 1.5rem;
+}
+.modal-body li {
+  margin-bottom: 0.75rem;
+}
 
 .warning-box {
   background: #fff7ed;
@@ -393,9 +407,15 @@ body {
 }
 
 @media (max-width: 768px) {
-  .hero { height: 40vh; }
-  .hero-content { padding: 1.5rem; }
-  .container { padding-top: 2rem; }
+  .hero {
+    height: 40vh;
+  }
+  .hero-content {
+    padding: 1.5rem;
+  }
+  .container {
+    padding-top: 2rem;
+  }
 
   /* Mobile Modal Optimization */
   .modal {
@@ -414,7 +434,7 @@ body {
     height: 36px;
     font-size: 1.5rem;
     background: rgba(241, 245, 249, 0.9);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   .modal-body h2 {
     font-size: 1.5rem;
