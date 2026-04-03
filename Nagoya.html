@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nagoya 2026 - Itinerary</title>
+    <meta name="description" content="2026 名古屋、立山黑部雪牆、吉卜力樂園五天四夜行程規劃與景點筆記。">
+    <meta property="og:title" content="Nagoya 2026 - 行程攻略">
+    <meta property="og:image" content="images/Nagoya.png">
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
       rel="stylesheet"
@@ -18,7 +21,7 @@
       </div>
     </header>
 
-    <div class="container">
+    <main class="container">
       <!-- 橫向行程概要篩選 -->
       <div class="itinerary-summary-wrapper">
         <div class="itinerary-summary">
@@ -160,383 +163,389 @@
       </div>
 
       <!-- 景點攻略區塊 -->
-      <div class="section-header"><h2>景點攻略</h2></div>
-      <div class="card-grid">
-        <div class="card" data-day="day1">
-          <img src="images/osu-kannon.jpg" class="card-img" alt="大須地區">
-          <div class="card-body">
-            <h3>大須地區 (Osu Kannon)</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🏮 觀音寺</span><span class="tag">🛍️ 商店街</span><span class="tag">📸 招財貓</span>
+      <section id="attractions">
+        <div class="section-header"><h2>景點攻略</h2></div>
+        <div class="card-grid">
+          <article class="card" data-day="day1">
+            <img src="images/osu-kannon.jpg" class="card-img" alt="大須地區">
+            <div class="card-body">
+              <h3>大須地區 (Osu Kannon)</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🏮 觀音寺</span><span class="tag">🛍️ 商店街</span><span class="tag">📸 招財貓</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                名古屋秋葉原。含萬松寺演出、巨大招財貓與商店街漫遊攻略。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('osuModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/UjqFqa9hgntQ8UfA7" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              名古屋秋葉原。含萬松寺演出、巨大招財貓與商店街漫遊攻略。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('osuModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/UjqFqa9hgntQ8UfA7" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day1">
-          <img src="images/Shikemichi.png" class="card-img" alt="四間道">
-          <div class="card-body">
-            <h3>四間道 (Shikemichi)</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🧱 歷史保存區</span><span class="tag">屋根神</span>
+          <article class="card" data-day="day1">
+            <img src="images/Shikemichi.png" class="card-img" alt="四間道">
+            <div class="card-body">
+              <h3>四間道 (Shikemichi)</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🧱 歷史保存區</span><span class="tag">屋根神</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                江戶時代防火街道。必看石牆土藏群與名古屋特有屋根神信仰。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('shikemichiModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/Gq18SNL5bqf4TpGf7" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              江戶時代防火街道。必看石牆土藏群與名古屋特有屋根神信仰。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('shikemichiModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/Gq18SNL5bqf4TpGf7" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day1">
-          <img src="images/chiikawa-Land-Nagoya.jpg" class="card-img" alt="Chiikawa">
-          <div class="card-body">
-            <h3>Chiikawa Land Nagoya</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🛍️ PARCO B1</span><span class="tag">新品限購</span>
+          <article class="card" data-day="day1">
+            <img src="images/chiikawa-Land-Nagoya.jpg" class="card-img" alt="Chiikawa">
+            <div class="card-body">
+              <h3>Chiikawa Land Nagoya</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🛍️ PARCO B1</span><span class="tag">新品限購</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                官方旗艦店。名古屋限定商品、LivePocket 預約入店教學。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('chiikawaModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/1wrqs6SqZ5yirmum9" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              官方旗艦店。名古屋限定商品、LivePocket 預約入店教學。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('chiikawaModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/1wrqs6SqZ5yirmum9" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day2">
-          <img src="images/ghibli-park.jpg" class="card-img" alt="吉卜力">
-          <div class="card-body">
-            <h3>吉卜力樂園 (Ghibli Park)</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🎟️ Standard券</span><span class="tag">15:00大倉庫</span>
+          <article class="card" data-day="day2">
+            <img src="images/ghibli-park.jpg" class="card-img" alt="吉卜力">
+            <div class="card-body">
+              <h3>吉卜力樂園 (Ghibli Park)</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🎟️ Standard券</span><span class="tag">15:00大倉庫</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                大散步券攻略。重點在造景拍照、魔女之谷與大倉庫體驗。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('ghibliModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/kCnvKGFXagySMZBR8" class="btn btn-primary" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              大散步券攻略。重點在造景拍照、魔女之谷與大倉庫體驗。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('ghibliModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/kCnvKGFXagySMZBR8" class="btn btn-primary" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day3">
-          <img src="images/上高地.png" class="card-img" alt="上高地">
-          <div class="card-body">
-            <h3>上高地</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🏔️ 4/18開山</span><span class="tag">神降地</span>
+          <article class="card" data-day="day3">
+            <img src="images/上高地.png" class="card-img" alt="上高地">
+            <div class="card-body">
+              <h3>上高地</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🏔️ 4/18開山</span><span class="tag">神降地</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                河童橋眺望穗高連峰。剛開山殘雪美景、梓川藍與嘉門次小屋。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('kamikochiModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/RySrMdsVvqWccFKA7" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              河童橋眺望穗高連峰。剛開山殘雪美景、梓川藍與嘉門次小屋。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('kamikochiModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/RySrMdsVvqWccFKA7" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day4">
-          <img src="images/立山黑部.jpg" class="card-img" alt="立山黑部">
-          <div class="card-body">
-            <h3>立山黑部</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">❄️ 雪之大谷</span><span class="tag">工程奇蹟</span>
+          <article class="card" data-day="day4">
+            <img src="images/立山黑部.jpg" class="card-img" alt="立山黑部">
+            <div class="card-body">
+              <h3>立山黑部</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">❄️ 雪之大谷</span><span class="tag">工程奇蹟</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                室堂雪牆、黑部水壩。震撼雪景、雷鳥目擊與洋蔥式穿法指南。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('snowwallModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/XZLoBmPoZoauGXLN6" class="btn btn-primary" target="_blank">集合地點</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              室堂雪牆、黑部水壩。震撼雪景、雷鳥目擊與洋蔥式穿法指南。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('snowwallModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/XZLoBmPoZoauGXLN6" class="btn btn-primary" target="_blank">集合地點</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day5">
-          <img src="images/Nagoya-Castle.webp" class="card-img" alt="名古屋城">
-          <div class="card-body">
-            <h3>名古屋城 (Nagoya Castle)</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🏯 本丸御殿</span><span class="tag">金鯱</span>
+          <article class="card" data-day="day5">
+            <img src="images/Nagoya-Castle.webp" class="card-img" alt="名古屋城">
+            <div class="card-body">
+              <h3>名古屋城 (Nagoya Castle)</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🏯 本丸御殿</span><span class="tag">金鯱</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                必看本丸御殿金箔壁畫。目前天守閣封閉，外圍欣賞金鯱象徵。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('castleModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/yxAVwLjyFucwoYXB9" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              必看本丸御殿金箔壁畫。目前天守閣封閉，外圍欣賞金鯱象徵。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('castleModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/yxAVwLjyFucwoYXB9" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day5">
-          <img src="images/Atsuta-Jingu.jpg" class="card-img" alt="熱田神宮">
-          <div class="card-body">
-            <h3>熱田神宮 (Atsuta Jingu)</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">⛩️ 三神器</span><span class="tag">草薙劍</span>
+          <article class="card" data-day="day5">
+            <img src="images/Atsuta-Jingu.jpg" class="card-img" alt="熱田神宮">
+            <div class="card-body">
+              <h3>熱田神宮 (Atsuta Jingu)</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">⛩️ 三神器</span><span class="tag">草薙劍</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                供奉草薙劍的神聖之地。含草薙館體驗、信長牆與能量點導覽。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('atsutaJinguModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/uARuu6SA4U3LKzm2A" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              供奉草薙劍的神聖之地。含草薙館體驗、信長牆與能量點導覽。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('atsutaJinguModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/uARuu6SA4U3LKzm2A" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day5">
-          <img src="images/戶田川綠地公園.jpg" class="card-img" alt="戶田川">
-          <div class="card-body">
-            <h3>戶田川綠地公園</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🌳 農業文化園</span><span class="tag">親子遊具</span>
+          <article class="card" data-day="day5">
+            <img src="images/戶田川綠地公園.jpg" class="card-img" alt="戶田川">
+            <div class="card-body">
+              <h3>戶田川綠地公園</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🌳 農業文化園</span><span class="tag">親子遊具</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                名古屋西南最大綠地。含超長溜滑梯、空中腳踏車與野餐攻略。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('todagawaModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/HwLmMC4KjRFwFaLK8" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              名古屋西南最大綠地。含超長溜滑梯、空中腳踏車與野餐攻略。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('todagawaModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/HwLmMC4KjRFwFaLK8" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day5">
-          <img src="images/Noritake-Garden.jpg" class="card-img" alt="則武之森">
-          <div class="card-body">
-            <h3>則武之森 (Noritake Garden)</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🏭 工業遺產</span><span class="tag">陶瓷美學</span>
+          <article class="card" data-day="day5">
+            <img src="images/Noritake-Garden.jpg" class="card-img" alt="則武之森">
+            <div class="card-body">
+              <h3>則武之森 (Noritake Garden)</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🏭 工業遺產</span><span class="tag">陶瓷美學</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                百年陶瓷品牌舊工廠改建園區。紅磚建築、工藝體驗與高級餐飲。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('noritakeModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/FwQmRgJ8WVyc2Tnz6" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              百年陶瓷品牌舊工廠改建園區。紅磚建築、工藝體驗與高級餐飲。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('noritakeModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/FwQmRgJ8WVyc2Tnz6" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- 伊勢神宮 -->
-        <div class="card" data-day="all">
-          <img src="images/伊勢神宮.jpeg" class="card-img" alt="伊勢神宮">
-          <div class="card-body">
-            <h3>伊勢神宮 內宮</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">⛩️ 天照大御神</span><span class="tag">📜 式年遷宮</span><span class="tag">🍡 托福橫丁</span>
+          <!-- 伊勢神宮 -->
+          <article class="card" data-day="all">
+            <img src="images/伊勢神宮.jpeg" class="card-img" alt="伊勢神宮">
+            <div class="card-body">
+              <h3>伊勢神宮 內宮</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">⛩️ 天照大御神</span><span class="tag">📜 式年遷宮</span><span class="tag">🍡 托福橫丁</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                日本地位最崇高的神社。參拜天照大御神，並在充滿江戶風情的托福橫丁享用赤福與伊勢烏龍麵。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('iseModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/bwem8fC6UXvL8Q1J6" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              日本地位最崇高的神社。參拜天照大御神，並在充滿江戶風情的托福橫丁享用赤福與伊勢烏龍麵。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('iseModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/bwem8fC6UXvL8Q1J6" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- 玉野御嶽神社-->
-        <div class="card" data-day="all">
-          <img src="images/玉野御嶽神社.png" class="card-img" alt="玉野御嶽神社">
-          <div class="card-body">
-            <h3>玉野御嶽神社 (貓之神社)</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🐈 療癒嚕貓</span><span class="tag">🥾 自然健行</span><span class="tag">🖋️ 貓咪御朱印</span>
+          <!-- 玉野御嶽神社-->
+          <article class="card" data-day="all">
+            <img src="images/玉野御嶽神社.png" class="card-img" alt="玉野御嶽神社">
+            <div class="card-body">
+              <h3>玉野御嶽神社 (貓之神社)</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🐈 療癒嚕貓</span><span class="tag">🥾 自然健行</span><span class="tag">🖋️ 貓咪御朱印</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                結合自然健行與貓咪療癒的隱世秘境。親人的領航貓與每月更新的可愛貓咪御朱印是粉絲必朝聖重點。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('tamanoModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/h715QuUw8fYU9oD99?g_st=ic" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              結合自然健行與貓咪療癒的隱世秘境。親人的領航貓與每月更新的可愛貓咪御朱印是粉絲必朝聖重點。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('tamanoModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/h715QuUw8fYU9oD99?g_st=ic" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- 麵包超人博物館 -->
-        <div class="card" data-day="all">
-          <img src="images/麵包超人博物館.jpg" class="card-img" alt="麵包超人博物館">
-          <div class="card-body">
-            <h3>名古屋麵包超人兒童博物館</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">👶 親子首選</span><span class="tag">🥨 造型麵包</span><span class="tag">🎭 劇場表演</span>
+          <!-- 麵包超人博物館 -->
+          <article class="card" data-day="all">
+            <img src="images/麵包超人博物館.jpg" class="card-img" alt="麵包超人博物館">
+            <div class="card-body">
+              <h3>名古屋麵包超人兒童博物館</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">👶 親子首選</span><span class="tag">🥨 造型麵包</span><span class="tag">🎭 劇場表演</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                學齡前兒童的天堂。結合室內博物館與戶外公園，必買果醬爺爺手作造型麵包與觀賞精彩表演。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('anpanmanModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/jL5UUYSjcgU8ijWJ9?g_st=ic" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              學齡前兒童的天堂。結合室內博物館與戶外公園，必買果醬爺爺手作造型麵包與觀賞精彩表演。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('anpanmanModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/jL5UUYSjcgU8ijWJ9?g_st=ic" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- 名花之里 -->
-        <div class="card" data-day="all">
-          <img src="images/名花之里.jpg" class="card-img" alt="名花之里">
-          <div class="card-body">
-            <h3>名花之里</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">✨ 冬季燈飾</span><span class="tag">🌷 四季花海</span><span class="tag">🌉 光之隧道</span>
+          <!-- 名花之里 -->
+          <article class="card" data-day="all">
+            <img src="images/名花之里.jpg" class="card-img" alt="名花之里">
+            <div class="card-body">
+              <h3>名花之里</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">✨ 冬季燈飾</span><span class="tag">🌷 四季花海</span><span class="tag">🌉 光之隧道</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                全日本最大規模燈飾聖地。春季花海與冬季震撼的光之隧道，是中部地區最浪漫的夜間景點。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('nabanaModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/EsUTukdDafx8uiq3A" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              全日本最大規模燈飾聖地。春季花海與冬季震撼的光之隧道，是中部地區最浪漫的夜間景點。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('nabanaModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/EsUTukdDafx8uiq3A" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
+          </article>
         </div>
-      </div>
+      </section>
 
       <!-- 美食攻略區塊 -->
-      <div class="section-header">
-        <h2>美食攻略</h2>
-      </div>
-      <div class="card-grid">
-        <div class="card" data-day="day1">
-          <img src="images/New-Poppy.png" class="card-img" alt="New Poppy">
-          <div class="card-body">
-            <h3>喫茶 New Poppy</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">☕ 倉庫改建</span><span class="tag">鐵板小倉吐司</span>
-            </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              重生於四間道的百年土藏。推薦鐵板小倉吐司配 Poppy Blend 咖啡。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('poppyModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/sPhn39GQkUKKMdzB7" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
+      <section id="food">
+        <div class="section-header">
+          <h2>美食攻略</h2>
         </div>
+        <div class="card-grid">
+          <article class="card" data-day="day1">
+            <img src="images/New-Poppy.png" class="card-img" alt="New Poppy">
+            <div class="card-body">
+              <h3>喫茶 New Poppy</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">☕ 倉庫改建</span><span class="tag">鐵板小倉吐司</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                重生於四間道的百年土藏。推薦鐵板小倉吐司配 Poppy Blend 咖啡。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('poppyModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/sPhn39GQkUKKMdzB7" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
 
-        <div class="card" data-day="day2">
-          <img src="images/熱田蓬萊軒.jpg" class="card-img" alt="熱田蓬萊軒">
-          <div class="card-body">
-            <h3>熱田蓬萊軒</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🍱 鰻魚三吃</span><span class="tag">預約登記制</span>
+          <article class="card" data-day="day2">
+            <img src="images/熱田蓬萊軒.jpg" class="card-img" alt="熱田蓬萊軒">
+            <div class="card-body">
+              <h3>熱田蓬萊軒</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🍱 鰻魚三吃</span><span class="tag">預約登記制</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                百年老店。鰻魚飯三吃詳細教學與登記預約策略。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('houraikenModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/wneMypKwnEWy7KTy5" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              百年老店。鰻魚飯三吃詳細教學與登記預約策略。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('houraikenModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/wneMypKwnEWy7KTy5" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day2">
-          <img src="images/飛騨牛一頭家.jpg" class="card-img" alt="飛騨牛">
-          <div class="card-body">
-            <h3>飛騨牛一頭家</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🥩 馬喰一代</span><span class="tag">高CP值</span>
+          <article class="card" data-day="day2">
+            <img src="images/飛騨牛一頭家.jpg" class="card-img" alt="飛騨牛">
+            <div class="card-body">
+              <h3>飛騨牛一頭家</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🥩 馬喰一代</span><span class="tag">高CP值</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                一次買入整頭飛騨牛的名店，肉質鮮甜，入口即化，預約建議。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('bakuroModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/NFibxpw26u85G2vf9" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              一次買入整頭飛騨牛的名店，肉質鮮甜，入口即化，預約建議。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('bakuroModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/NFibxpw26u85G2vf9" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day5">
-          <img src="images/鳥開総本家.jpeg" class="card-img" alt="鳥開總本家">
-          <div class="card-body">
-            <h3>鳥開総本家</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🐣 金賞親子丼</span><span class="tag">地雞料理</span>
+          <article class="card" data-day="day5">
+            <img src="images/鳥開総本家.jpeg" class="card-img" alt="鳥開總本家">
+            <div class="card-body">
+              <h3>鳥開総本家</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🐣 金賞親子丼</span><span class="tag">地雞料理</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                使用名古屋交趾雞，榮獲多次丼飯與手羽先金賞，美味保證。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('torikaiModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/hZqgiQRKSXXCtXTC6" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              使用名古屋交趾雞，榮獲多次丼飯與手羽先金賞，美味保證。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('torikaiModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/hZqgiQRKSXXCtXTC6" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- MARUYA 本店 -->
-        <div class="card" data-day="all">
-          <img src="images/MARUYA 本店.png" class="card-img" alt="MARUYA 本店">
-          <div class="card-body">
-            <h3>MARUYA 本店</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🍱 鰻魚三吃</span><span class="tag">📍 名古屋站旁</span><span class="tag">🪵 原木風裝潢</span>
+          <!-- MARUYA 本店 -->
+          <article class="card" data-day="all">
+            <img src="images/MARUYA 本店.png" class="card-img" alt="MARUYA 本店">
+            <div class="card-body">
+              <h3>MARUYA 本店</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🍱 鰻魚三吃</span><span class="tag">📍 名古屋站旁</span><span class="tag">🪵 原木風裝潢</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                2024年5月新進駐名站商圈。除了經典三吃，現代明亮的日式用餐氛圍與極佳的交通便利性是其優勢。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('maruyaModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/rVdk49ZDP97JKEoi8?g_st=ipc" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              2024年5月新進駐名站商圈。除了經典三吃，現代明亮的日式用餐氛圍與極佳的交通便利性是其優勢。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('maruyaModal')" class="btn btn-highlight">💡 詳細筆記</button>
-              <a href="https://maps.app.goo.gl/rVdk49ZDP97JKEoi8?g_st=ipc" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
+          </article>
         </div>
-      </div>
+      </section>
 
       <!-- 住宿攻略區塊 -->
-      <div class="section-header"><h2>住宿攻略</h2></div>
-      <div class="card-grid">
-        <div class="card" data-day="day1">
-          <img src="images/大和ROYNET飯店.png" class="card-img" alt="大和Roynet">
-          <div class="card-body">
-            <h3>大和ROYNET飯店 名古屋太閣通口</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🏨 名古屋站旁</span><span class="tag">交通首選</span>
+      <section id="accommodation">
+        <div class="section-header"><h2>住宿攻略</h2></div>
+        <div class="card-grid">
+          <article class="card" data-day="day1">
+            <img src="images/大和ROYNET飯店.png" class="card-img" alt="大和Roynet">
+            <div class="card-body">
+              <h3>大和ROYNET飯店 名古屋太閣通口</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🏨 名古屋站旁</span><span class="tag">交通首選</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                交通位置優越，環境舒適，下機後入住或回國前住宿最方便。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('roynetHotelModal')" class="btn btn-highlight">💡 住宿筆記</button>
+                <a href="https://maps.app.goo.gl/j4DDYAQQ4i923E3Q9" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              交通位置優越，環境舒適，下機後入住或回國前住宿最方便。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('roynetHotelModal')" class="btn btn-highlight">💡 住宿筆記</button>
-              <a href="https://maps.app.goo.gl/j4DDYAQQ4i923E3Q9" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="card" data-day="day3">
-          <img src="images/HAKUBA-SUN-Valley-Hotel.png" class="card-img" alt="白馬酒店">
-          <div class="card-body">
-            <h3>白馬太陽谷酒店 (HAKUBA SUN Valley Hotel)</h3>
-            <div style="margin-bottom: 0.8rem">
-              <span class="tag">🏨 白馬村</span><span class="tag">大眾浴場</span>
+          <article class="card" data-day="day3">
+            <img src="images/HAKUBA-SUN-Valley-Hotel.png" class="card-img" alt="白馬酒店">
+            <div class="card-body">
+              <h3>白馬太陽谷酒店 (HAKUBA SUN Valley Hotel)</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🏨 白馬村</span><span class="tag">大眾浴場</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                位於滑雪勝地。提供大眾浴場放鬆身心，需注意夜間保暖提醒。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('hakubaModal')" class="btn btn-highlight">💡 住宿筆記</button>
+                <a href="https://maps.app.goo.gl/jV3Ce8Us5TH5Fdnr6" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
             </div>
-            <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
-              位於滑雪勝地。提供大眾浴場放鬆身心，需注意夜間保暖提醒。
-            </p>
-            <div style="display: flex; gap: 0.5rem; margin-top: auto">
-              <button onclick="openModal('hakubaModal')" class="btn btn-highlight">💡 住宿筆記</button>
-              <a href="https://maps.app.goo.gl/jV3Ce8Us5TH5Fdnr6" class="btn btn-outline" target="_blank">地點連結</a>
-            </div>
-          </div>
+          </article>
         </div>
-      </div>
+      </section>
 
-      <div class="footer">&copy; 2026 Nagoya Trip Planner</div>
-    </div>
+      <footer class="footer">&copy; 2026 Nagoya Trip Planner</footer>
+    </main>
 
     <script src="script.js"></script>
   </body>
