@@ -12,9 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => console.error("載入彈窗失敗:", error));
 
-  // 恢復先前儲存的排版偏好
+  // 恢復先前儲存的排版偏好，若無儲存則預設為 grid
   const savedLayout = localStorage.getItem("preferredLayout");
-  if (savedLayout === "grid") {
+  if (savedLayout === "list") {
+    document.querySelectorAll(".card-grid").forEach((grid) => {
+      grid.classList.remove("grid-view");
+    });
+  } else {
+    // 預設或是 savedLayout === "grid"
     document.querySelectorAll(".card-grid").forEach((grid) => {
       grid.classList.add("grid-view");
     });
@@ -26,11 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function toggleLayout() {
   const grids = document.querySelectorAll(".card-grid");
-  const isGridView = grids[0].classList.toggle("grid-view");
+  // 以第一個 grid 的現狀來決定要切換成什麼
+  const willBeGridView = !grids[0].classList.contains("grid-view");
 
-  // 同步所有網格的類別
   grids.forEach((grid) => {
-    if (isGridView) {
+    if (willBeGridView) {
       grid.classList.add("grid-view");
     } else {
       grid.classList.remove("grid-view");
@@ -38,7 +43,7 @@ function toggleLayout() {
   });
 
   // 儲存偏好
-  localStorage.setItem("preferredLayout", isGridView ? "grid" : "list");
+  localStorage.setItem("preferredLayout", willBeGridView ? "grid" : "list");
 }
 
 function toggleFilter(dayId, element) {
