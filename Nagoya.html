@@ -22,6 +22,13 @@
     </header>
 
     <main class="container">
+      <!-- 佈局切換按鈕 -->
+      <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+        <button onclick="toggleLayout()" class="btn btn-outline" style="width: auto; padding: 0.5rem 1rem;">
+          橫列 / 網格
+        </button>
+      </div>
+
       <!-- 橫向行程概要篩選 -->
       <div class="itinerary-summary-wrapper">
         <div class="itinerary-summary">
@@ -404,6 +411,210 @@
               <div style="display: flex; gap: 0.5rem; margin-top: auto">
                 <button onclick="openModal('nabanaModal')" class="btn btn-highlight">💡 詳細筆記</button>
                 <a href="https://maps.app.goo.gl/EsUTukdDafx8uiq3A" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 夜景攻略區塊 -->
+      <section id="night-views">
+        <div class="section-header"><h2>夜景攻略</h2></div>
+        <div class="card-grid">
+          <!-- JR Gate Tower -->
+          <article class="card" data-day="all">
+            <img src="https://assets.funliday.com/posts/wp-content/uploads/2025/11/30144900/JR-Gate-Tower-15F.jpg" class="card-img" alt="JR Gate Tower">
+            <div class="card-body">
+              <h3>JR Gate Tower 展望台</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🏙️ 高樓展望</span><span class="tag">🆓 免費</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                15樓大片落地玻璃，俯瞰車站周邊不夜城，必看玻璃倒影。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('gateTowerModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/Q2jLyqAGj2ZyZwqK7" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- MIRAI TOWER -->
+          <article class="card" data-day="all">
+            <img src="images/中部電力-MIRAI-TOWER.jpg" class="card-img" alt="MIRAI TOWER">
+            <div class="card-body">
+              <h3>中部電力 MIRAI TOWER</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🗼 地標鐵塔</span><span class="tag">📸 浪漫約會</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                日本第一座電視塔，夜晚亮燈充滿氛圍，俯瞰久屋大通公園。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('miraiTowerModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/6ucDaWJ13tbdr8XM9" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 久屋大通公園 -->
+          <article class="card" data-day="all">
+            <img src="images/久屋大通公園.png" class="card-img" alt="久屋大通公園">
+            <div class="card-body">
+              <h3>久屋大通公園</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🌳 城市綠洲</span><span class="tag">✨ 夜間點燈</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                名古屋最受歡迎夜間景點，鐵塔投射燈與繁華街道交織。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('hisayaParkModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/iQEh7C3jbHztnG6u6" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Oasis 21 -->
+          <article class="card" data-day="all">
+            <img src="images/綠洲21.png" class="card-img" alt="Oasis 21">
+            <div class="card-body">
+              <h3>Oasis 21 綠洲 21</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🛸 水之宇宙船</span><span class="tag">🌌 科幻感</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                「水之宇宙船」玻璃平台，拍攝倒影與久屋大通公園的最佳地點。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('oasis21Modal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/vx9v4oKeyWgZuADVA" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 東山Sky Tower -->
+          <article class="card" data-day="all">
+            <img src="images/東山Sky Tower.jpg" class="card-img" alt="東山Sky Tower">
+            <div class="card-body">
+              <h3>東山Sky Tower</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🗼 360度展望</span><span class="tag">🕯️ 約會聖地</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                134公尺觀景台，360度環視全城燈海，情侶約會的首選。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('higashiyamaTowerModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/9ToiSff6Bg8pXQSY6" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 名古屋港 -->
+          <article class="card" data-day="all">
+            <img src="images/名古屋港.png" class="card-img" alt="名古屋港">
+            <div class="card-body">
+              <h3>名古屋港花園碼頭</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">⚓ 海港夜景</span><span class="tag">🌊 寧靜氛圍</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                欣賞燈塔、倉庫與遊艇剪影，海風徐徐，呈現浪漫海港夜色。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('nagoyaPortModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/AENiuR3eSUJksoht5" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 名城公園 -->
+          <article class="card" data-day="all">
+            <img src="images/名城公園.png" class="card-img" alt="名城公園">
+            <div class="card-body">
+              <h3>名城公園</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🏯 遠眺古城</span><span class="tag">🚶 散策景點</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                夜晚氣氛靜謐，可遠眺名古屋城剪影，是在地人私藏的散步點。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('meijoParkModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/gm4U9Rt8N9WB7VS28" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sky Promenade -->
+          <article class="card" data-day="all">
+            <img src="images/Sky Promenade.png" class="card-img" alt="Sky Promenade">
+            <div class="card-body">
+              <h3>Sky Promenade</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🏢 戶外高空</span><span class="tag">💎 震撼視野</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                Midland Square 戶外觀景台，最震撼的高空車站建築群夜景。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('skyPromenadeModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/U9oFzk34Aa3krm7y7" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 大須商店街夜景 -->
+          <article class="card" data-day="all">
+            <img src="images/大須商店街.png" class="card-img" alt="大須夜景">
+            <div class="card-body">
+              <h3>大須商店街夜景</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🏮 復古霓虹</span><span class="tag">🍜 庶民美食</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                復古燈光與大須觀音燈火，充滿生活感與懷舊氛圍的夜遊區。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('osuNightModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/vKQJ7PjDgHKX6kCv7" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 中日大樓 -->
+          <article class="card" data-day="all">
+            <img src="images/中日大樓.jpg" class="card-img" alt="中日大樓">
+            <div class="card-body">
+              <h3>中日大樓</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">🌿 露天露台</span><span class="tag">🍺 悠閒時光</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                7樓開放式屋頂空間，一邊享用美食，一邊俯瞰榮區繁華燈火。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('chunichiBuildingModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/zfstEXg5wLJH3URMA" class="btn btn-outline" target="_blank">地點連結</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 愛知藝術文化中心 -->
+          <article class="card" data-day="all">
+            <img src="images/愛知藝術文化中心.png" class="card-img" alt="愛知藝文中心">
+            <div class="card-body">
+              <h3>愛知藝術文化中心</h3>
+              <div style="margin-bottom: 0.8rem">
+                <span class="tag">📷 隱藏攝影點</span><span class="tag">💎 超高CP值</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 1.5rem">
+                11樓展望廊，完美「平視」鐵塔與綠洲21，攝影玩家必訪。
+              </p>
+              <div style="display: flex; gap: 0.5rem; margin-top: auto">
+                <button onclick="openModal('aichiArtCenterModal')" class="btn btn-highlight">💡 詳細筆記</button>
+                <a href="https://maps.app.goo.gl/UjfBYP5a1a2QgYXeA" class="btn btn-outline" target="_blank">地點連結</a>
               </div>
             </div>
           </article>

@@ -11,7 +11,35 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.appendChild(modalContainer);
     })
     .catch((error) => console.error("載入彈窗失敗:", error));
+
+  // 恢復先前儲存的排版偏好
+  const savedLayout = localStorage.getItem("preferredLayout");
+  if (savedLayout === "grid") {
+    document.querySelectorAll(".card-grid").forEach((grid) => {
+      grid.classList.add("grid-view");
+    });
+  }
 });
+
+/**
+ * 切換排版 (橫列 / 網格)
+ */
+function toggleLayout() {
+  const grids = document.querySelectorAll(".card-grid");
+  const isGridView = grids[0].classList.toggle("grid-view");
+
+  // 同步所有網格的類別
+  grids.forEach((grid) => {
+    if (isGridView) {
+      grid.classList.add("grid-view");
+    } else {
+      grid.classList.remove("grid-view");
+    }
+  });
+
+  // 儲存偏好
+  localStorage.setItem("preferredLayout", isGridView ? "grid" : "list");
+}
 
 function toggleFilter(dayId, element) {
   // Single-select radio behavior for timeline filters
